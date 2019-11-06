@@ -1373,6 +1373,26 @@ When using the Azure Cosmos DB extension for VS Code, you can create .mongo file
 db.users.find({ someField: { $exists: true } });
 ```
 
+#### Markdown: handle Zero-based lists correctly ([#6852] by [@evilebottnawi])
+
+<!-- prettier-ignore -->
+```md
+<!-- Input -->
+0. List
+1. List
+2. List
+
+<!-- Output (Prettier stable) -->
+0. List
+1. List
+1. List
+
+<!-- Output (Prettier master) -->
+0. List
+1. List
+2. List
+```
+
 [#5682]: https://github.com/prettier/prettier/pull/5682
 [#6657]: https://github.com/prettier/prettier/pull/6657
 [#5910]: https://github.com/prettier/prettier/pull/5910
@@ -1421,6 +1441,7 @@ db.users.find({ someField: { $exists: true } });
 [#6708]: https://github.com/prettier/prettier/pull/6708
 [#6687]: https://github.com/prettier/prettier/pull/6687
 [#6796]: https://github.com/prettier/prettier/pull/6796
+[#6852]: https://github.com/prettier/prettier/pull/6852
 [#6848]: https://github.com/prettier/prettier/pull/6848
 [@brainkim]: https://github.com/brainkim
 [@duailibe]: https://github.com/duailibe
@@ -1443,3 +1464,4 @@ db.users.find({ someField: { $exists: true } });
 [@andersk]: https://github.com/andersk
 [@lydell]: https://github.com/lydell
 [@aymericbouzy]: https://github.com/aymericbouzy
+[@evilebottnawi]: https://github.com/evilebottnawi

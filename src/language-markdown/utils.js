@@ -162,6 +162,34 @@ function getOrderedListItemInfo(orderListItem, originalText) {
   return { numberText, marker, leadingSpaces };
 }
 
+function hasGitDiffFriendlyOrderedList(node, options) {
+  if (!node.ordered) {
+    return false;
+  }
+
+  if (node.children.length < 2) {
+    return false;
+  }
+
+  const startNumber = Number(
+    getOrderedListItemInfo(node.children[0], options.originalText).numberText
+  );
+
+  const number = Number(
+    getOrderedListItemInfo(node.children[1], options.originalText).numberText
+  );
+
+  if (startNumber === 0 && node.children.length > 2) {
+    const nextNumber = Number(
+      getOrderedListItemInfo(node.children[2], options.originalText).numberText
+    );
+
+    return number === 1 && nextNumber === 1;
+  }
+
+  return number === 1;
+}
+
 // workaround for https://github.com/remarkjs/remark/issues/351
 // leading and trailing newlines are stripped by remark
 function getFencedCodeBlockValue(node, originalText) {
@@ -229,6 +257,7 @@ module.exports = {
   punctuationPattern,
   getFencedCodeBlockValue,
   getOrderedListItemInfo,
+  hasGitDiffFriendlyOrderedList,
   INLINE_NODE_TYPES,
   INLINE_NODE_WRAPPER_TYPES
 };
